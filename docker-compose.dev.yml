@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: app-cadastro-dev
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/cadastro-usuarios
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend-cadastro-dev
+    restart: always
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - app
+
+  mongodb:
+    image: mongo:7.0.0
+    container_name: mongodb-cadastro-dev
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data-dev:/data/db
+
+volumes:
+  mongo-data-dev:
