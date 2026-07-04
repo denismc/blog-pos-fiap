@@ -46,12 +46,14 @@ cp backend/.env.example backend/.env
 
 Edite o `backend/.env` com seus valores:
 
+```env
 PORT=3000
 MONGODB_URI=mongodb://mongodb:27017/cadastro-usuarios
 PEPPER=substitua_por_uma_string_longa_e_aleatoria
 JWT_SECRET=substitua_por_uma_string_longa_e_aleatoria
 JWT_EXPIRES_IN=8h
 CORS_ORIGIN=http://localhost:5173
+```
 
 **3 → Configure as variáveis de ambiente do frontend**
 ```bash
@@ -60,7 +62,9 @@ cp frontend/.env.example frontend/.env
 
 Edite o `frontend/.env` com seus valores:
 
+```env
 VITE_API_URL=http://localhost:3000/api
+```
 
 ## 🐳 Rodando com Docker
 
@@ -95,6 +99,7 @@ Na primeira execução, um usuário administrador é criado automaticamente:
 
 ## 📁 Estrutura
 
+```
 ├── backend/
 │   ├── src/
 │   │   ├── config/       # Variáveis de ambiente
@@ -115,6 +120,7 @@ Na primeira execução, um usuário administrador é criado automaticamente:
 │   └── ...
 ├── docker-compose.yml
 └── docker-compose.dev.yml
+```
 
 ## 📄 Licença
 
