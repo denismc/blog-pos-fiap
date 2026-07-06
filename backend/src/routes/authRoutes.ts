@@ -1,9 +1,12 @@
 import express from 'express';
-import { login } from '../controllers/authController.js';
+import { UsuarioRepository } from '../repositories/UsuarioRepository.js';
+import { AuthController } from '../controllers/authController.js';
 import { validarSchema } from '../middlewares/validarSchema.js';
 import { loginSchema } from '../schemas/usuarioSchema.js';
 
 const router = express.Router();
+const repository = new UsuarioRepository();
+const controller = new AuthController(repository);
 /**
  * @swagger
  * /auth/login:
@@ -48,6 +51,6 @@ const router = express.Router();
  *         description: Credenciais inválidas
  */
 
-router.post('/login', validarSchema(loginSchema), login);
+router.post('/login', validarSchema(loginSchema), (req, res) => controller.login(req, res));
 
 export default router;

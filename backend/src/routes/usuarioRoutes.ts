@@ -1,11 +1,6 @@
 import express from 'express';
-import {
-  criarUsuario,
-  listarUsuarios,
-  buscarUsuario,
-  atualizarUsuario,
-  deletarUsuario,
-} from '../controllers/usuarioController.js';
+import { UsuarioRepository } from '../repositories/UsuarioRepository.js';
+import { UsuarioController } from '../controllers/usuarioController.js';
 import { validarSchema } from '../middlewares/validarSchema.js';
 import { autorizar } from '../middlewares/autorizar.js';
 import {
@@ -14,6 +9,8 @@ import {
 } from '../schemas/usuarioSchema.js';
 
 const router = express.Router();
+const repository = new UsuarioRepository();
+const controller = new UsuarioController(repository);
 
 /**
  * @swagger
@@ -65,7 +62,7 @@ const router = express.Router();
  *       403:
  *         description: Acesso negado
  */
-router.post('/', autorizar('Administrador'), validarSchema(criarUsuarioSchema), criarUsuario);
+router.post('/', autorizar('Administrador'), validarSchema(criarUsuarioSchema), (req, res) => controller.criarUsuario(req, res));
 
 /**
  * @swagger
@@ -87,7 +84,7 @@ router.post('/', autorizar('Administrador'), validarSchema(criarUsuarioSchema), 
  *       401:
  *         description: Token não fornecido ou inválido
  */
-router.get('/', listarUsuarios);
+router.get('/', (req, res) => controller.listarUsuarios(req, res));
 
 /**
  * @swagger
@@ -116,7 +113,7 @@ router.get('/', listarUsuarios);
  *       404:
  *         description: Usuário não encontrado
  */
-router.get('/:id', buscarUsuario);
+router.get('/:id', (req, res) => controller.buscarUsuario(req, res));
 
 /**
  * @swagger
@@ -172,7 +169,7 @@ router.get('/:id', buscarUsuario);
  *       404:
  *         description: Usuário não encontrado
  */
-router.put('/:id', autorizar('Administrador'), validarSchema(atualizarUsuarioSchema), atualizarUsuario);
+router.put('/:id', autorizar('Administrador'), validarSchema(atualizarUsuarioSchema), (req, res) => controller.atualizarUsuario(req, res));
 
 /**
  * @swagger
@@ -199,6 +196,6 @@ router.put('/:id', autorizar('Administrador'), validarSchema(atualizarUsuarioSch
  *       404:
  *         description: Usuário não encontrado
  */
-router.delete('/:id', autorizar('Administrador'), deletarUsuario);
+router.delete('/:id', autorizar('Administrador'), (req, res) => controller.deletarUsuario(req, res));
 
 export default router;

@@ -27,6 +27,43 @@ Boilerplate completo de autenticação e cadastro de usuários com foco em segur
 - Variáveis sensíveis isoladas em `.env`
 - Validação de dados no backend e frontend
 
+## 🏗️ Arquitetura
+
+O projeto segue o padrão **MVC + Repository Pattern**:
+
+```
+Controller → Repository → Model → MongoDB
+```
+
+- **Controller** → recebe a requisição e retorna a resposta
+- **Repository** → abstrai o acesso ao banco de dados
+- **Model** → define o schema do MongoDB
+- **Middleware** → autenticação, autorização e validação
+
+O Repository Pattern permite trocar o banco de dados sem alterar os controllers, e facilita os testes unitários com mocks.
+
+## 🧪 Testes
+
+O projeto usa **Jest + ts-jest** para testes unitários do backend.
+
+**Rodar os testes:**
+
+```bash
+cd backend
+npm test
+```
+
+**Cobertura atual:**
+
+| Controller | Testes |
+|------------|--------|
+| `criarUsuario` | 2 |
+| `atualizarUsuario` | 3 |
+| `listarUsuarios` | 2 |
+| `buscarUsuario` | 2 |
+| `deletarUsuario` | 2 |
+| **Total** | **11** |
+
 ## 📋 Pré-requisitos
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
