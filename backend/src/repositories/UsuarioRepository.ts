@@ -1,0 +1,36 @@
+import { IUsuarioRepository } from './IUsuarioRepository.js';
+import { IUsuario } from '../interfaces/IUsuario.js';
+import { ICriarUsuario } from '../interfaces/ICriarUsuario.js';
+import { IAtualizarUsuario } from '../interfaces/IAtualizarUsuario.js';
+import Usuario from '../models/usuarioModel.js';
+
+export class UsuarioRepository implements IUsuarioRepository {
+  async findAll(): Promise<IUsuario[]> {
+    return await Usuario.find().lean();
+  }
+
+  async findById(id: string): Promise<IUsuario | null> {
+    return await Usuario.findById(id).lean();
+  }
+
+  async findByEmail(email: string): Promise<(IUsuario & { senha: string }) | null> {
+    return await Usuario.findOne({ email }).select('+senha').lean();
+  }
+
+  async create(dados: ICriarUsuario): Promise<IUsuario> {
+    const usuario = new Usuario(dados);
+    await usuario.save();
+    return usuario.toObject();
+  }
+
+  async update(id: string, dados: IAtualizarUsuario): Promise<IUsuario | null> {
+    return await Usuario.findByIdAndUpdate(id, dados, {
+      new: true,
+      runValidators: true,
+    }).lean();
+  }
+
+  async delete(id: string): Promise<IUsuario | null> {
+    return await Usuario.findByIdAndDelete(id).lean();
+  }
+}
