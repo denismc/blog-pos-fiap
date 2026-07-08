@@ -15,6 +15,7 @@ function Header({ tela, onMudarTela, usuarioLogado, onLogout }: HeaderProps) {
   return (
     <header className="header">
       <div className="header-titulo">
+        <img src="/favicon.svg" alt="" className="header-logo" />
         <h1>Blog Pós FIAP</h1>
         <nav className="header-nav">
           <button className={tela === 'posts' ? 'aba-ativa' : ''} onClick={() => onMudarTela('posts')}>
