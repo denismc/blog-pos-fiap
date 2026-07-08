@@ -1,6 +1,6 @@
-# Login Argon2id — Full-Stack Boilerplate
+# Blog Pós FIAP
 
-Boilerplate completo de autenticação e cadastro de usuários com foco em segurança, boas práticas e arquitetura escalável.
+API e front-end de um blog acadêmico com posts, autores e controle de acesso por perfil (Administrador, Professor, Aluno), com autenticação e cadastro de usuários com foco em segurança, boas práticas e arquitetura escalável.
 
 ## 🚀 Tecnologias
 
@@ -62,7 +62,13 @@ npm test
 | `listarUsuarios` | 2 |
 | `buscarUsuario` | 2 |
 | `deletarUsuario` | 2 |
-| **Total** | **11** |
+| `criarPost` | 2 |
+| `listarPosts` | 2 |
+| `buscarPost` | 2 |
+| `pesquisarPosts` | 2 |
+| `atualizarPost` | 5 |
+| `deletarPost` | 4 |
+| **Total** | **28** |
 
 ## 📋 Pré-requisitos
 
@@ -72,8 +78,8 @@ npm test
 
 **1 → Clone o repositório**
 ```bash
-git clone https://github.com/denismc/login-argon2id.git
-cd login-argon2id
+git clone https://github.com/denismc/blog-pos-fiap.git
+cd blog-pos-fiap
 ```
 
 **2 → Configure as variáveis de ambiente do backend**
@@ -85,7 +91,7 @@ Edite o `backend/.env` com seus valores:
 
 ```env
 PORT=3000
-MONGODB_URI=mongodb://mongodb:27017/cadastro-usuarios
+MONGODB_URI=mongodb://mongodb:27017/blog-pos-fiap
 PEPPER=substitua_por_uma_string_longa_e_aleatoria
 JWT_SECRET=substitua_por_uma_string_longa_e_aleatoria
 JWT_EXPIRES_IN=8h
@@ -133,6 +139,42 @@ Na primeira execução, um usuário administrador é criado automaticamente:
 | Senha | admin123 |
 
 > ⚠️ Altere a senha do usuário padrão após o primeiro acesso!
+
+## 🔌 Endpoints
+
+Documentação interativa completa (Swagger) em `http://localhost:3000/api/docs`.
+
+**Auth**
+
+| Método | Rota | Acesso |
+|--------|------|--------|
+| POST | `/api/auth/login` | Público |
+
+**Usuários**
+
+| Método | Rota | Acesso |
+|--------|------|--------|
+| GET | `/api/usuarios` | Autenticado |
+| GET | `/api/usuarios/:id` | Autenticado |
+| POST | `/api/usuarios` | Administrador |
+| PUT | `/api/usuarios/:id` | Administrador |
+| DELETE | `/api/usuarios/:id` | Administrador |
+
+**Posts**
+
+| Método | Rota | Acesso |
+|--------|------|--------|
+| GET | `/api/posts` | Autenticado (Administrador, Professor, Aluno) |
+| GET | `/api/posts/:id` | Autenticado (Administrador, Professor, Aluno) |
+| GET | `/api/posts/search?q=` | Autenticado (Administrador, Professor, Aluno) |
+| POST | `/api/posts` | Administrador, Professor |
+| PUT | `/api/posts/:id` | Administrador (qualquer post) ou Professor (somente o próprio) |
+| DELETE | `/api/posts/:id` | Administrador (qualquer post) ou Professor (somente o próprio) |
+
+Regras de negócio de `Posts`:
+- O campo `autor` de um post nunca vem do corpo da requisição em `POST` — é sempre o usuário autenticado (via token).
+- Em `PUT`, o campo `autor` só pode ser alterado por um Administrador; se um Professor enviá-lo, o valor é ignorado.
+- Alunos têm acesso somente de leitura (listar, buscar e pesquisar).
 
 ## 📁 Estrutura
 

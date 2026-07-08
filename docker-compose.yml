@@ -3,13 +3,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: app-cadastro
+    container_name: app-blog
     restart: always
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
-      - MONGODB_URI=mongodb://mongodb:27017/cadastro-usuarios
+      - MONGODB_URI=mongodb://mongodb:27017/blog-pos-fiap
     depends_on:
       - mongodb
 
@@ -17,7 +17,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: frontend-cadastro
+    container_name: frontend-blog
     restart: always
     ports:
       - "80:80"
@@ -26,7 +26,7 @@ services:
 
   mongodb:
     image: mongo:7.0.0
-    container_name: mongodb-cadastro
+    container_name: mongodb-blog
     restart: always
     ports:
       - "27017:27017"
