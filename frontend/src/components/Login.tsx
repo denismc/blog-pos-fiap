@@ -30,8 +30,8 @@ function Login({ onLogin }) {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1>Cadastro de Usuários</h1>
-        <h2>Entrar</h2>
+        <img src="/logo-blog-fiap-1024.jpg" alt="Blog Pós FIAP" className="login-logo" />
+        <h1>Blog Pós FIAP</h1><br></br>
         {erro && <div className="erro-msg">{erro}</div>}
         <form onSubmit={handleSubmit}>
           <div className="campo">
