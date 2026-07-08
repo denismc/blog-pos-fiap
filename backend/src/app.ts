@@ -5,6 +5,7 @@ import { env } from './config/env.js';
 import seed from './seed.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import postRoutes from './routes/postRoutes.js';
 import { autenticar } from './middlewares/authMiddleware.js';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger.js';
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', autenticar, usuarioRoutes);
+app.use('/api/posts', autenticar, postRoutes);
 
 mongoose
   .connect(env.MONGODB_URI)
