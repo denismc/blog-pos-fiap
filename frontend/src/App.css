@@ -21,6 +21,34 @@
   font-size: 24px;
 }
 
+.header-titulo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.header-nav button {
+  background: transparent;
+  color: #555;
+  padding: 6px 12px;
+}
+
+.header-nav button.aba-ativa {
+  background: #4CAF50;
+  color: white;
+}
+
+.tela-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
 button {
   padding: 10px 20px;
   border: none;
@@ -89,12 +117,45 @@ button {
   border-radius: 10px;
   width: 100%;
   max-width: 420px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
-.modal h2 {
+.modal-grande {
+  width: 80vw;
+  max-width: 80vw;
+  height: 80vh;
+  max-height: 80vh;
+}
+
+.modal-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
   margin-bottom: 24px;
+}
+
+.modal-cabecalho h2 {
   font-size: 20px;
+}
+
+.btn-fechar-modal {
+  background: transparent;
+  color: #999;
+  padding: 0 4px;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.btn-fechar-modal:hover {
+  color: #333;
+}
+
+.modal-conteudo {
+  overflow-y: auto;
 }
 
 .campo {
@@ -110,17 +171,21 @@ button {
 }
 
 .campo input,
-.campo select {
+.campo select,
+.campo textarea {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
   outline: none;
   background: white;
+  font-family: inherit;
+  resize: vertical;
 }
 
 .campo input:focus,
-.campo select:focus {
+.campo select:focus,
+.campo textarea:focus {
   border-color: #4CAF50;
 }
 
@@ -209,4 +274,68 @@ button {
   border-radius: 6px;
   margin-bottom: 16px;
   font-size: 14px;
+}
+
+.busca-posts {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.busca-posts input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.busca-posts input:focus {
+  border-color: #4CAF50;
+}
+
+.busca-posts button {
+  background: #4CAF50;
+  color: white;
+}
+
+.linha-post {
+  cursor: pointer;
+}
+
+.post-titulo {
+  font-weight: bold;
+  color: #2196F3;
+}
+
+.post-detalhe-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.post-detalhe-meta p {
+  margin: 0;
+}
+
+.post-detalhe-conteudo {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* .acoes-modal button:first-child/:last-child (acima) tem a mesma especificidade
+   e definiria cinza/verde por posição; PostDetalhe usa Excluir/Editar em vez de
+   Cancelar/Salvar, então reforça as cores próprias aqui. */
+.acoes-modal button.btn-excluir {
+  background: #f44336;
+  color: white;
+}
+
+.acoes-modal button.btn-editar {
+  background: #2196F3;
+  color: white;
 }
