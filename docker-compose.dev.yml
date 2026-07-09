@@ -3,7 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-    container_name: app-blog-dev
+    container_name: ${COMPOSE_PROJECT_NAME}-app-dev
     restart: always
     ports:
       - "3000:3000"
@@ -21,7 +21,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
-    container_name: frontend-blog-dev
+    container_name: ${COMPOSE_PROJECT_NAME}-frontend-dev
     restart: always
     ports:
       - "5173:5173"
@@ -33,7 +33,7 @@ services:
 
   mongodb:
     image: mongo:7.0.0
-    container_name: mongodb-blog-dev
+    container_name: ${COMPOSE_PROJECT_NAME}-mongodb-dev
     restart: always
     ports:
       - "27017:27017"

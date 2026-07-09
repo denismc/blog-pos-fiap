@@ -121,6 +121,19 @@ docker-compose -f docker-compose.dev.yml up -d --build
 docker-compose up -d --build
 ```
 
+**Resetar o banco (apaga os dados e roda o seed do zero)**
+```bash
+docker-compose -f docker-compose.dev.yml down -v
+```
+> ⚠️ `down` sozinho só para os containers — os dados continuam no volume e o seed não roda de novo. Só o `-v` limpa o volume de fato.
+
+**Rodando mais de uma cópia na mesma máquina**
+
+Os nomes dos containers usam `${COMPOSE_PROJECT_NAME}`, que por padrão é o nome da pasta do projeto. Como o `git clone` sempre cria uma pasta chamada `blog-pos-fiap`, duas cópias clonadas em lugares diferentes ainda colidem por padrão (mesmo nome de projeto = mesmos containers/volume). Pra rodar duas instâncias isoladas ao mesmo tempo, use a flag `-p` com um nome diferente para cada uma:
+```bash
+docker-compose -p meu-teste -f docker-compose.dev.yml up -d --build
+```
+
 ## 🌐 Acessos
 
 | Serviço | URL |
