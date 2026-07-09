@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header, { type Tela } from './components/Header';
 import TelaPosts from './screens/TelaPosts';
+import TelaPostsAluno from './screens/TelaPostsAluno';
 import TelaUsuarios from './screens/TelaUsuarios';
 import Login from './components/Login';
 import './App.css';
@@ -29,10 +30,18 @@ function App() {
     return <Login onLogin={handleLogin} />;
   }
 
+  const isAluno = usuarioLogado.perfil === 'Aluno';
+
   return (
     <div className="container">
       <Header tela={tela} onMudarTela={setTela} usuarioLogado={usuarioLogado} onLogout={handleLogout} />
-      {tela === 'posts' ? <TelaPosts usuarioLogado={usuarioLogado} /> : <TelaUsuarios usuarioLogado={usuarioLogado} />}
+      {isAluno ? (
+        <TelaPostsAluno />
+      ) : tela === 'posts' ? (
+        <TelaPosts usuarioLogado={usuarioLogado} />
+      ) : (
+        <TelaUsuarios usuarioLogado={usuarioLogado} />
+      )}
     </div>
   );
 }

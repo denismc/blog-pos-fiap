@@ -85,14 +85,6 @@ function TelaPosts({ usuarioLogado }: TelaPostsProps) {
 
   return (
     <div>
-      <div className="tela-toolbar">
-        {podeCriar && (
-          <button className="btn-novo" onClick={abrirNovo}>
-            + Novo Post
-          </button>
-        )}
-      </div>
-
       <TabelaPosts
         posts={posts}
         usuarioLogado={usuarioLogado}
@@ -102,6 +94,8 @@ function TelaPosts({ usuarioLogado }: TelaPostsProps) {
         onAbrirDetalhe={abrirDetalhe}
         onEditar={abrirEdicao}
         onExcluir={excluirPost}
+        podeCriar={podeCriar}
+        onNovo={abrirNovo}
       />
 
       {modal === 'detalhe' && postSelecionado && (
