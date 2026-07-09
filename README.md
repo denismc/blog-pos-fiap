@@ -149,7 +149,8 @@ Na primeira execução (banco vazio), um usuário de cada perfil é criado autom
 | Perfil | Email | Senha |
 |--------|-------|-------|
 | Administrador | admin@admin.com | admin123 |
-| Professor | professor@professor.com | professor123 |
+| Professor A | professora@professora.com | professor123 |
+| Professor B | professorb@professorb.com | professor123 |
 | Aluno | aluno@aluno.com | aluno123 |
 
 > ⚠️ Altere as senhas padrão após o primeiro acesso!
