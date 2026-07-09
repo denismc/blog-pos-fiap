@@ -10,6 +10,8 @@ interface TabelaPostsProps {
   onAbrirDetalhe: (post: IPost) => void;
   onEditar: (post: IPost) => void;
   onExcluir: (id: string) => void;
+  podeCriar: boolean;
+  onNovo: () => void;
 }
 
 function TabelaPosts({
@@ -21,6 +23,8 @@ function TabelaPosts({
   onAbrirDetalhe,
   onEditar,
   onExcluir,
+  podeCriar,
+  onNovo,
 }: TabelaPostsProps) {
   const podeGerenciar = (post: IPost) =>
     usuarioLogado.perfil === 'Administrador' ||
@@ -36,6 +40,11 @@ function TabelaPosts({
           onChange={(e) => onTermoBuscaChange(e.target.value)}
         />
         <button type="submit">Buscar</button>
+        {podeCriar && (
+          <button type="button" className="btn-novo" onClick={onNovo}>
+            + Novo Post
+          </button>
+        )}
       </form>
       <table className="tabela">
         <thead>
