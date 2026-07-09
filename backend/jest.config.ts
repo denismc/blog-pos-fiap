@@ -17,6 +17,15 @@ const config: Config = {
   },
   testMatch: ['**/__tests__/**/*.test.ts'],
   clearMocks: true,
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.test.ts', '!src/types/**'],
+  coverageThreshold: {
+    global: {
+      statements: 20,
+      branches: 20,
+      functions: 20,
+      lines: 20,
+    },
+  },
 };
 
 export default config;

@@ -44,7 +44,7 @@ O Repository Pattern permite trocar o banco de dados sem alterar os controllers,
 
 ## 🧪 Testes
 
-O projeto usa **Jest + ts-jest** para testes unitários do backend.
+O projeto usa **Jest + ts-jest** para testes unitários do backend. `npm test` já roda com `--coverage`, e o `jest.config.ts` tem um `coverageThreshold` global de 20% (statements, branches, functions e lines) — se a cobertura cair abaixo disso, os testes falham. Isso atende ao requisito de cobertura mínima de 20% do código.
 
 **Rodar os testes:**
 
@@ -53,7 +53,7 @@ cd backend
 npm test
 ```
 
-**Cobertura atual:**
+**Cobertura atual:** ~38% statements / ~41% lines (bem acima do mínimo de 20% exigido), com foco nos controllers — em especial `postController`, que cobre criação, edição e exclusão de posts, incluindo as regras de propriedade (autor vs. Administrador).
 
 | Controller | Testes |
 |------------|--------|
