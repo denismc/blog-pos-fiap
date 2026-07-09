@@ -17,8 +17,14 @@ const seedUsuarios = async () => {
       perfil: 'Administrador',
     },
     {
-      nome: 'Professor',
-      email: 'professor@professor.com',
+      nome: 'Professor A',
+      email: 'professora@professora.com',
+      senha: await hash('professor123'),
+      perfil: 'Professor',
+    },
+    {
+      nome: 'ProfessorB',
+      email: 'professorb@professorb.com',
       senha: await hash('professor123'),
       perfil: 'Professor',
     },
@@ -32,7 +38,7 @@ const seedUsuarios = async () => {
 
   console.log('Usuários padrão criados:');
   console.log('  Administrador: admin@admin.com / admin123');
-  console.log('  Professor: professor@professor.com / professor123');
+  console.log('  Professor A: professora@professora.com / professor123');
   console.log('  Aluno: aluno@aluno.com / aluno123');
 };
 
@@ -68,7 +74,7 @@ const seedPosts = async () => {
   const total = await Post.countDocuments();
   if (total > 0) return;
 
-  const professor = await Usuario.findOne({ email: 'professor@professor.com' });
+  const professor = await Usuario.findOne({ email: 'professora@professora.com' });
   if (!professor) return;
 
   await Post.create(posts.map((post) => ({ ...post, autor: professor._id })));
