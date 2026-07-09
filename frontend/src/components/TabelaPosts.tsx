@@ -46,7 +46,7 @@ function TabelaPosts({
           </button>
         )}
       </form>
-      <table className="tabela">
+      <table className="tabela tabela-posts">
         <thead>
           <tr>
             <th>Título</th>
@@ -63,7 +63,7 @@ function TabelaPosts({
           ) : (
             posts.map((post) => (
               <tr key={post._id}>
-                <td className="post-titulo" onClick={() => onAbrirDetalhe(post)}>
+                <td className="post-titulo" onClick={() => onAbrirDetalhe(post)} title={post.titulo}>
                   {post.titulo}
                 </td>
                 <td>{post.autor.nome}</td>

@@ -129,16 +129,17 @@ docker-compose up -d --build
 | Backend API | http://localhost:3000 |
 | MongoDB | localhost:27017 |
 
-## 👤 Usuário padrão
+## 👤 Usuários padrão
 
-Na primeira execução, um usuário administrador é criado automaticamente:
+Na primeira execução (banco vazio), um usuário de cada perfil é criado automaticamente:
 
-| Campo | Valor |
-|-------|-------|
-| Email | admin@admin.com |
-| Senha | admin123 |
+| Perfil | Email | Senha |
+|--------|-------|-------|
+| Administrador | admin@admin.com | admin123 |
+| Professor | professor@professor.com | professor123 |
+| Aluno | aluno@aluno.com | aluno123 |
 
-> ⚠️ Altere a senha do usuário padrão após o primeiro acesso!
+> ⚠️ Altere as senhas padrão após o primeiro acesso!
 
 ## 🔌 Endpoints
 

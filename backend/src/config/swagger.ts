@@ -4,9 +4,9 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Login Argon2id — API',
+      title: 'Blog Pós FIAP — API',
       version: '1.0.0',
-      description: 'Documentação da API do boilerplate de autenticação',
+      description: 'Documentação da API do Blog Pós FIAP: usuários, autenticação e posts',
     },
     servers: [
       {
