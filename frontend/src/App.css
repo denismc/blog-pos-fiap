@@ -5,7 +5,7 @@
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
 }
@@ -356,4 +356,77 @@ button {
 .post-detalhe-conteudo {
   white-space: pre-wrap;
   line-height: 1.5;
+}
+
+.busca-cards {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 24px;
+  background: white;
+}
+
+.busca-cards:focus {
+  border-color: var(--cor-secundaria);
+}
+
+.sem-posts {
+  color: #777;
+  padding: 24px 0;
+}
+
+.grade-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.post-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.post-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.post-card-titulo {
+  font-size: 17px;
+  color: var(--cor-escura);
+}
+
+.post-card-resumo {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.post-card-rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.post-card-autor {
+  font-weight: bold;
+  color: var(--cor-secundaria);
+}
+
+.post-card-data {
+  color: #999;
 }

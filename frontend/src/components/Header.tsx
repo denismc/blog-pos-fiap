@@ -11,22 +11,25 @@ interface HeaderProps {
 
 function Header({ tela, onMudarTela, usuarioLogado, onLogout }: HeaderProps) {
   const isAdmin = usuarioLogado.perfil === 'Administrador';
+  const isAluno = usuarioLogado.perfil === 'Aluno';
 
   return (
     <header className="header">
       <div className="header-titulo">
         <img src="/favicon.svg" alt="" className="header-logo" />
         <h1>Blog Pós FIAP</h1>
-        <nav className="header-nav">
-          <button className={tela === 'posts' ? 'aba-ativa' : ''} onClick={() => onMudarTela('posts')}>
-            Posts
-          </button>
-          {isAdmin && (
-            <button className={tela === 'usuarios' ? 'aba-ativa' : ''} onClick={() => onMudarTela('usuarios')}>
-              Usuários
+        {!isAluno && (
+          <nav className="header-nav">
+            <button className={tela === 'posts' ? 'aba-ativa' : ''} onClick={() => onMudarTela('posts')}>
+              Posts
             </button>
-          )}
-        </nav>
+            {isAdmin && (
+              <button className={tela === 'usuarios' ? 'aba-ativa' : ''} onClick={() => onMudarTela('usuarios')}>
+                Usuários
+              </button>
+            )}
+          </nav>
+        )}
       </div>
       <div className="header-acoes">
         <span className="usuario-logado">
