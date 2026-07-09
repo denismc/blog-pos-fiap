@@ -23,7 +23,7 @@ const seedUsuarios = async () => {
       perfil: 'Professor',
     },
     {
-      nome: 'ProfessorB',
+      nome: 'Professor B',
       email: 'professorb@professorb.com',
       senha: await hash('professor123'),
       perfil: 'Professor',
@@ -39,6 +39,7 @@ const seedUsuarios = async () => {
   console.log('Usuários padrão criados:');
   console.log('  Administrador: admin@admin.com / admin123');
   console.log('  Professor A: professora@professora.com / professor123');
+  console.log('  Professor B: professorb@professorb.com / professor123');
   console.log('  Aluno: aluno@aluno.com / aluno123');
 };
 

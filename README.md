@@ -146,12 +146,12 @@ docker-compose -p meu-teste -f docker-compose.dev.yml up -d --build
 
 Na primeira execução (banco vazio), um usuário de cada perfil é criado automaticamente:
 
-| Perfil | Email | Senha |
-|--------|-------|-------|
-| Administrador | admin@admin.com | admin123 |
-| Professor A | professora@professora.com | professor123 |
-| Professor B | professorb@professorb.com | professor123 |
-| Aluno | aluno@aluno.com | aluno123 |
+| Perfil | Nome | Email | Senha |
+|--------|------|-------|-------|
+| Administrador | Administrador | admin@admin.com | admin123 |
+| Professor | Professor A | professora@professora.com | professor123 |
+| Professor | Professor B | professorb@professorb.com | professor123 |
+| Aluno | Aluno | aluno@aluno.com | aluno123 |
 
 > ⚠️ Altere as senhas padrão após o primeiro acesso!
 
