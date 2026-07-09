@@ -110,6 +110,31 @@ button {
   background: #f9f9f9;
 }
 
+.tabela-posts {
+  table-layout: fixed;
+}
+
+.tabela-posts th:nth-child(1),
+.tabela-posts td:nth-child(1) {
+  width: 45%;
+}
+
+.tabela-posts th:nth-child(2),
+.tabela-posts td:nth-child(2) {
+  width: 20%;
+}
+
+.tabela-posts th:nth-child(3),
+.tabela-posts td:nth-child(3) {
+  width: 15%;
+}
+
+.tabela-posts th:nth-child(4),
+.tabela-posts td:nth-child(4) {
+  width: 20%;
+  white-space: nowrap;
+}
+
 .btn-editar {
   background: var(--cor-secundaria);
   color: white;
@@ -331,13 +356,13 @@ button {
   color: white;
 }
 
-.linha-post {
-  cursor: pointer;
-}
-
 .post-titulo {
   font-weight: bold;
   color: var(--cor-secundaria);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-detalhe-meta {
