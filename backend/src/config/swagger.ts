@@ -1,4 +1,18 @@
 import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// process.cwd() sempre é /app, mas só existe 'src/' em dev (tsx roda direto do
+// TypeScript) e só existe 'dist/' em produção (o Dockerfile copia apenas o
+// build compilado). Resolver o glob a partir da localização deste próprio
+// arquivo garante que 'routes' seja encontrado nos dois cenários, já que o
+// tsc preserva os comentários @swagger no JS compilado.
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// glob (usado internamente pelo swagger-jsdoc) trata '\' como caractere de
+// escape — no Windows, path.join produz separadores '\', o que quebra o
+// padrão silenciosamente (zero arquivos encontrados). Normaliza para '/'.
+const toGlob = (p: string): string => p.split(path.sep).join('/');
 
 const options: swaggerJsdoc.Options = {
   definition: {
@@ -73,7 +87,7 @@ const options: swaggerJsdoc.Options = {
       },
     },
   },
-  apis: ['./src/routes/*.ts'],
+  apis: [toGlob(path.join(__dirname, '../routes/*.ts')), toGlob(path.join(__dirname, '../routes/*.js'))],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
